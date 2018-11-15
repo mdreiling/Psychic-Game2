@@ -10,14 +10,16 @@
 </head>
 <body>
     
-    <h1>The Psychic Game!</h1>
+    <h1>The Psychic Game! (v2)</h1>
 
     <div>
         <p id="directions-text"><b>Can you guess what letter I'm thinking of?</b></p>
-        <p id="wins-text">Wins: 0</p>
-        <p id="losses-text">Losses: 0</p>
-        <p id="guessesRemaining-text">Guesses remaining: 9</p>
-        <p id="userGuesses-text">Your guesses so far: </p>
+        <input id="gameReset-button" type="button" onclick="gameReset()" value="Click here to Start Playing!">
+        <p id="roundResult-text"></p>
+        <p id="wins-text"></p>
+        <p id="losses-text"></p>
+        <p id="guessesRemaining-text"></p>
+        <p id="userGuesses-text"></p>
     </div>
 
 </body>
@@ -44,20 +46,24 @@ var winsText = document.getElementById("wins-text");
 var lossesText = document.getElementById("losses-text");
 var guessesRemainingText = document.getElementById("guessesRemaining-text");
 var userGuessesText = document.getElementById("userGuesses-text");
-var computerSelection = "0";
+var roundResultText = document.getElementById("roundResultText");
+var gameResetButton = document.getElementById("gameReset-button");
+var computerSelection = "";
 
 // Functions ======================================
 
 // Game Reset Function to reset computer choice.
-// function gameReset() {
-//     if (computerSelection === "0") {
-//     } else {
-//         return
-//     };
-// };
-
-
-
+function gameReset() {
+    computerSelection = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    winsText.textContent = "Wins: " + wins;
+    lossesText.textContent = "Losses: " + losses;
+    guessesRemainingText.textContent = "Guesses remaining: " + remainingGuesses;
+    userGuessesText.textContent = "Your guesses so far: " + userGuesses;
+    gameResetButton.textContent = "Click here to play another round!";
+    console.log("Computer selected "+ computerSelection);
+    remainingGuesses = startingGuesses;
+    userGuesses = [];
+};
 
 // Main Process ===================================
 
@@ -66,7 +72,6 @@ document.onkeyup = function(event) {
 
     // Determines which key was pressed.
     var userGuess = event.key;
-    var computerSelection = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
     if (userGuess === "a" || userGuess === "b" || userGuess === "c" || userGuess === "d" || userGuess === "e" || userGuess === "f" || userGuess === "g" || userGuess === "h" || userGuess === "i" || userGuess === "j" || userGuess === "k" || userGuess === "l" || userGuess === "m" || userGuess === "n" || userGuess === "o" || userGuess === "p" || userGuess === "q" || userGuess === "r" || userGuess === "s" || userGuess === "t" || userGuess === "u" || userGuess === "v" || userGuess === "w" || userGuess === "x" || userGuess === "y" || userGuess === "z") {
             
@@ -74,8 +79,7 @@ document.onkeyup = function(event) {
             if (userGuess===computerSelection) {
                 console.log("You win!")
                 wins++;
-                remainingGuesses = startingGuesses;
-                userGuesses = [];
+                roundResultText.textContent = "You won the last round!";
                 // gameReset();
 
             }  else if (remainingGuesses > 1) {
@@ -85,12 +89,11 @@ document.onkeyup = function(event) {
             
             }   else {
                 losses++;
-                remainingGuesses = startingGuesses;
-                userGuesses = [];
+                roundResultText.textContent = "You lost the last roundl";
             }
 
     } else {
-            console.log("Please enter a letter to make a guess.")
+        console.log("Please enter a letter to make a guess.")
     };
 
     winsText.textContent = "Wins: " + wins;

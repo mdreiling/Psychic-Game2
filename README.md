@@ -1,2 +1,2 @@
-# Psychic-Game2
-Week 3 HW - Psychic Game v2
+# Psychic-Game
+Week 3 HW - Psychic Game
