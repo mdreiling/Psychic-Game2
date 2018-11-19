@@ -44,30 +44,30 @@ document.onkeyup = function(event) {
 
     if (userGuess === "a" || userGuess === "b" || userGuess === "c" || userGuess === "d" || userGuess === "e" || userGuess === "f" || userGuess === "g" || userGuess === "h" || userGuess === "i" || userGuess === "j" || userGuess === "k" || userGuess === "l" || userGuess === "m" || userGuess === "n" || userGuess === "o" || userGuess === "p" || userGuess === "q" || userGuess === "r" || userGuess === "s" || userGuess === "t" || userGuess === "u" || userGuess === "v" || userGuess === "w" || userGuess === "x" || userGuess === "y" || userGuess === "z") {
             
-            // Compares User Guess and Computer Selection and writes results to console.log.
-            if (userGuess===computerSelection) {
-                console.log("You win!")
-                wins++;
-                remainingGuesses = startingGuesses;
-                userGuesses = [];
-                roundResult = "win";
-                gameReset();
+        // Compares User Guess and Computer Selection and writes results to console.log.
+        if (userGuess===computerSelection) {
+            console.log("You win!")
+            wins++;
+            remainingGuesses = startingGuesses;
+            userGuesses = [];
+            roundResult = "WIN";
+            gameReset();
 
-            }  else if (remainingGuesses > 1) {
-                console.log("You selected " + userGuess + " | Computer picked " + computerSelection)
-                remainingGuesses--;
-                userGuesses.push(" " + userGuess);
-            
-            }   else {
-                losses++;
-                remainingGuesses = startingGuesses;
-                userGuesses = [];
-                roundResult = "loss";
-                gameReset();
-            }
+        }  else if (remainingGuesses > 1) {
+            console.log("You selected " + userGuess + " | Computer picked " + computerSelection)
+            remainingGuesses--;
+            userGuesses.push(" " + userGuess);
+        
+        }   else {
+            losses++;
+            remainingGuesses = startingGuesses;
+            userGuesses = [];
+            roundResult = "LOSS";
+            gameReset();
+        }
 
     } else {
-            console.log("Please enter a letter to make a guess.")
+         alert("Please enter a letter to make a guess.")
     };
 
     winsText.textContent = "Wins: " + wins;
